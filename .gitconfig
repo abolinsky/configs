@@ -1,0 +1,11 @@
+[user]
+  email = alex.bolinsky@lockerdome.com
+  name = \nAlex Bolinsky
+[core]
+  excludesfile = ~/.gitignore
+[alias]
+  st = status
+  co = checkout
+  b = branch
+  lg = log --graph --decorate --relative-date --oneline
+  llg = log --graph --decorate --relative-date --pretty=format:\"%C(yellow)%h %Cblue%ad %C(green)%an%C(cyan)%d%Creset - %s\"
