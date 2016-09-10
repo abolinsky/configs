@@ -1,2 +1,2 @@
 # configs
-configuration files
+configuration files for vim, git, and tmux
