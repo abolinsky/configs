@@ -39,10 +39,15 @@ set hlsearch
 set shiftwidth=2
 set shiftround
 
+" folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+
 " enable mouse support
-"if has('mouse')
-"  set mouse=a
-"endif
+if has('mouse')
+  set mouse=a
+endif
 
 " window splitting
 set splitright
