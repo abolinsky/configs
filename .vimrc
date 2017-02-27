@@ -14,6 +14,9 @@ runtime! debian.vim
 filetype plugin indent on
 syntax on
 
+" redefine leader to ,
+let mapleader="\<space>"
+
 " hit backspace without this one and see for yourself
 set backspace=indent,eol,start
 
@@ -61,6 +64,32 @@ nnoremap <C-j> <PageDown>
 " auto print statement
 autocmd FileType cpp nmap <buffer> <C-c> i << ::std::endl;<esc>5bhi::std::cout <<<space>
 autocmd FileType javascript nmap <buffer> <C-c> i);<esc>hiconsole.log(
+
+" pathogen runtime path manager
+execute pathogen#infect()
+
+" tagbar
+nnoremap <C-l> :TagbarToggle<CR>
+
+" fugitive
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+nnoremap <Leader>ga :Git add %:p<CR><CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Gcommit -v -q<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR><CR>
+nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <Leader>gp :Ggrep<Space>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>gb :Git branch<Space>
+nnoremap <Leader>go :Git checkout<Space>
+nnoremap <Leader>gps :Gpush<CR>
+nnoremap <Leader>gpl :Gpull<CR>
+
+" jshint
+set runtimepath+=~/.vim/bundle/jshint2.vim/
 
 " Source the vimrc file after saving it
 augroup vimrc

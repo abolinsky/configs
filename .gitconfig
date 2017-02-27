@@ -9,3 +9,5 @@
   b = branch
   lg = log --graph --decorate --relative-date --oneline
   llg = log --graph --decorate --relative-date --pretty=format:\"%C(yellow)%h %Cblue%ad %C(green)%an%C(cyan)%d%Creset - %s\"
+[remote]
+  fetch = +refs/heads/*:refs/remotes/origin/*

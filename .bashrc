@@ -110,6 +110,8 @@ fi
 
 # remap caps lock to control
 setxkbmap -option ctrl:nocaps
+# disbale control s freezing terminal
+stty stop undef
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
