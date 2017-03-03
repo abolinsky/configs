@@ -82,7 +82,7 @@ nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR><CR>
 nnoremap <Leader>gl :Git log<CR>
-nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>gm :Gmerge<Space>
 nnoremap <Leader>go :Git checkout<Space>
 nnoremap <Leader>gbr :Git branch<Space>
 nnoremap <Leader>gbl :Gblame<CR>
