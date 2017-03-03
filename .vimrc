@@ -74,17 +74,18 @@ nnoremap <C-l> :TagbarToggle<CR>
 " fugitive
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 nnoremap <Leader>ga :Git add %:p<CR><CR>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gst :Gstatus<CR>
+nnoremap <Leader>gsq :Git rebase -i<CR>
 nnoremap <Leader>gc :Gcommit -v -q<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR><CR>
-nnoremap <Leader>gl :silent! Git llg<CR>:right copen<CR>
+nnoremap <Leader>gl :Git log<CR>
 nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gb :Git branch<Space>
 nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>gbl :Git blame<CR>
+nnoremap <Leader>gbr :Git branch<Space>
+nnoremap <Leader>gbl :Gblame<CR>
 nnoremap <Leader>gps :Gpush<CR>
 nnoremap <Leader>gpl :Gpull<CR>
 
@@ -120,6 +121,11 @@ set background=dark
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" colors
+hi TabLineFill ctermfg=255 ctermbg=250
+hi TabLine ctermfg=White ctermbg=235
+hi TabLineSel ctermfg=Black ctermbg=Yellow
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")

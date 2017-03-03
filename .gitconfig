@@ -3,6 +3,7 @@
   name = \nAlex Bolinsky
 [core]
   excludesfile = ~/.gitignore
+	editor = vim
 [alias]
   st = status
   co = checkout
