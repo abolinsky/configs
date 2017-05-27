@@ -8,11 +8,17 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ### fugitive (vim git wrapper)
-cd ~/.vim/bundle
-git clone git://github.com/tpope/vim-fugitive.git
+cd ~/.vim/bundle && \
+git clone git://github.com/tpope/vim-fugitive.git && \
 vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
 ### tmux (terminal multiplexer))
+**tmux**: git clone https://github.com/tmux/tmux.git && \
+cd tmux && \
+sh autogen.sh && \
+./configure && make
+
+**tmux plugin manager (TPM)**: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ### tagbar (current file tags sidebar)
 
