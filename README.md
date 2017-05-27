@@ -21,16 +21,20 @@ sh autogen.sh && \
 ### tmux plugin manager (TPM)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-### tagbar (current file tags sidebar)
+### vim airline (status bar)
 cd ~/.vim/bundle && \
-git clone git://github.com/majutsushi/tagbar.git
-
-### exuberant ctags (language objects indexer)
-sudo apt-get install exuberant-ctags
+git clone https://github.com/bling/vim-airline
 
 ### the silver searcher (search)
 mac: brew install the_silver_searcher \
 ubuntu: sudo apt-get install silversearcher-ag
+
+### exuberant ctags (language objects indexer)
+sudo apt-get install exuberant-ctags
+
+### vim tagbar (current file tags sidebar)
+cd ~/.vim/bundle && \
+git clone git://github.com/majutsushi/tagbar.git
 
 ### jshint (javascript linter)
 
