@@ -132,6 +132,13 @@ let g:airline_section_y=''
 let g:airline_section_z=''
 let g:airline_right_sep=''
 let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#default#section_truncate_width = {
+      \ 'x': 60,
+      \ 'y': 88,
+      \ 'z': 45,
+      \ 'warning': 80,
+      \ 'error': 80,
+      \ }
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
