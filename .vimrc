@@ -127,6 +127,12 @@ hi TabLineFill ctermfg=255 ctermbg=250
 hi TabLine ctermfg=White ctermbg=235
 hi TabLineSel ctermfg=Black ctermbg=Yellow
 
+" vim airlines
+let g:airline_section_y=''
+let g:airline_section_z=''
+let g:airline_right_sep=''
+let g:airline#extensions#whitespace#enabled=0
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
