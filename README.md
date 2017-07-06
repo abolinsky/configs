@@ -21,6 +21,14 @@ sh autogen.sh && \
 ### tmux plugin manager (TPM)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+### tmux plugins
+mem-cpu-load: cd ~.tmux/plugins && \
+git clone git@github.com:thewtex/tmux-mem-cpu-load.git && \
+cd tmux-mem-cpu-load && \
+sudo cmake . && \
+make && \
+sudo make install
+
 ### vim airline (status bar)
 cd ~/.vim/bundle && \
 git clone https://github.com/bling/vim-airline
