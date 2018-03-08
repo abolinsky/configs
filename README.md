@@ -12,6 +12,9 @@ cd ~/.vim/bundle && \
 git clone git://github.com/tpope/vim-fugitive.git && \
 vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
+### nerdtree (file system tree)
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+
 ### tmux (terminal multiplexer))
 git clone https://github.com/tmux/tmux.git && \
 cd tmux && \
