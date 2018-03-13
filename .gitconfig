@@ -1,9 +1,9 @@
 [user]
-  email = alex.bolinsky@lockerdome.com
+  email = ahbolinsky@gmail.com
   name = \nAlex Bolinsky
 [core]
-  excludesfile = ~/.gitignore
-	editor = vim
+  excludesfile = /home/ahbolinsky/.gitignore
+  editor = vim
 [alias]
   st = status
   co = checkout
