@@ -61,6 +61,9 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-k> <PageUp>
 nnoremap <C-j> <PageDown>
 
+" nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
 " auto print statement
 autocmd FileType cpp nmap <buffer> <C-c> i << ::std::endl;<esc>5bhi::std::cout <<<space>
 autocmd FileType javascript nmap <buffer> <C-c> i);<esc>hiconsole.log(
