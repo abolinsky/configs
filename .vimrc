@@ -9,6 +9,34 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 filetype plugin indent on
@@ -61,9 +89,6 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-k> <PageUp>
 nnoremap <C-j> <PageDown>
 
-" nerdtree
-map <C-n> :NERDTreeToggle<CR>
-
 " auto print statement
 autocmd FileType cpp nmap <buffer> <C-c> i << ::std::endl;<esc>5bhi::std::cout <<<space>
 autocmd FileType javascript nmap <buffer> <C-c> i);<esc>hiconsole.log(
@@ -74,7 +99,7 @@ execute pathogen#infect()
 " tagbar
 nnoremap <C-l> :TagbarToggle<CR>
 
-" fugitive
+" fugitive (git wrapper)
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 nnoremap <Leader>ga :Git add %:p<CR><CR>
 nnoremap <Leader>gst :Gstatus<CR>
@@ -92,8 +117,11 @@ nnoremap <Leader>gbl :Gblame<CR>
 nnoremap <Leader>gps :Gpush<CR>
 nnoremap <Leader>gpl :Gpull<CR>
 
-" jshint
-set runtimepath+=~/.vim/bundle/jshint2.vim/
+" nerdtree (file explorer)
+nnoremap <silent> <C-t> :NERDTreeToggle<CR>
+
+" ctrlp (fuzzy finder)
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Source the vimrc file after saving it
 augroup vimrc
@@ -142,6 +170,26 @@ let g:airline#extensions#default#section_truncate_width = {
       \ 'warning': 80,
       \ 'error': 80,
       \ }
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")

@@ -3,10 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[ -z "$PS1" ] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -88,7 +85,10 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # additional text for GitHub branches
-export PS1='\[\e[0;35m\]\h:\[\e[0;36m\]\w\[\e[0;32m\]$(__git_ps1 " [%s]")\[\e[m\]$ '
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\[\e[0;35m\]\h:\[\e[0;36m\]\w\[\e[0;32m\]\$(git_branch)\[\e[m\]$ "
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -126,3 +126,17 @@ fi
 
 export NVM_DIR="/home/ahbolinsky/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+alias git="LANG=\"en_US.UTF-8\" git"
+
+# use user-installed vim over system one
+alias vi=/usr/local/bin/vim
+alias vim=/usr/local/bin/vim
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Created by `userpath` on 2021-11-04 10:51:04
+export PATH="$PATH:/Users/alexanderbolinsky/.local/bin"
+
+# silence the verbose message when opening a new shell
+export BASH_SILENCE_DEPRECATION_WARNING=1

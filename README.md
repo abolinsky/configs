@@ -7,6 +7,10 @@ configuration files for vim, git, and tmux
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
+### vim-plug (vim package manager)
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 ### fugitive (vim git wrapper)
 cd ~/.vim/bundle && \
 git clone git://github.com/tpope/vim-fugitive.git && \
@@ -20,6 +24,12 @@ git clone https://github.com/tmux/tmux.git && \
 cd tmux && \
 sh autogen.sh && \
 ./configure && make
+
+### coc (fuzzy code completion)
+brew install node
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+:PlugInstall
+:CocInstall coc-clangd
 
 ### tmux plugin manager (TPM)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -36,6 +46,10 @@ sudo make install
 cd ~/.vim/bundle && \
 git clone https://github.com/bling/vim-airline
 
+### vim ctrlp (fuzzy finder)
+cd ~/.vim/bundle && \
+git clone https://github.com/ctrlpvim/ctrlp.vim.git
+
 ### the silver searcher (search)
 mac: brew install the_silver_searcher \
 ubuntu: sudo apt-get install silversearcher-ag
@@ -46,8 +60,6 @@ sudo apt-get install exuberant-ctags
 ### vim tagbar (current file tags sidebar)
 cd ~/.vim/bundle && \
 git clone git://github.com/majutsushi/tagbar.git
-
-### jshint (javascript linter)
 
 todo:
 setup script to install all of these tools if not present
