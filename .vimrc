@@ -1,197 +1,114 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
+" settings
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
+syntax on			        " syntax highlighting
+colorscheme onehalfdark " set colorscheme
+filetype plugin on	  " enable loading plugin files, also switches on filetype detection
+filetype indent on    " enable auto-indentation
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible		  " be iMproved, required
+set number		    	  " set displayed numbers to be line numbers
+set hidden		    	  " allow hidden buffers
+set hlsearch	  		  " set highlight for last search pattern
+set ignorecase        " ignore case in search
+set incsearch         " show search results as you type
+set wrap		      	  " set text to wraq
+set autoindent			  " set auto indent on new line
+set tabstop=2         " set tab width
+set shiftwidth=2      " set shift width
+set expandtab         " replace tabs with spaces
+set noswapfile        " set no swap file for the buffer
+set path+=~/.vimrc	  " add to path to be used by find, etc.
+set spelllang=en_us   " set spellcheck language to english
+set nrformats+=alpha  " allow us to increment/decrement alphabet characters
+set autochdir         " set auto change current working directory
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
+" internal variables
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+let mapleader=" "	          " set leader to space
+let maplocalleader=","      " set local leader to comma
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-filetype plugin indent on
-syntax on
+let g:netrw_liststyle=3	    " set default netrw listing style as tree
+let g:netrw_banner=0		    " set default netrw banner visibility off
+let g:netrw_browse_split=4	" set default file open behavior: 0 (same window), 1 (new h split), 2 (new v split), 3 (new tab), 4 (previous window)
+let g:netrw_winsize=25	    " set default netrw window size to 25%
+let g:netrw_altv=1		      " set default left-right split to right
 
-" redefine leader to ,
-let mapleader="\<space>"
 
-" hit backspace without this one and see for yourself
-set backspace=indent,eol,start
+" abbreviations
 
-" non-relative numbering
-set number
-set numberwidth=4
+" abbreviating my name
+iabbrev @n Alexander Bolinsky
 
-" tab spacing to two 
-set tabstop=2
-set autoindent
-set expandtab
-set laststatus=2
-set smarttab
-set softtabstop=2
 
-" searching
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
+" mappings
 
-" shifting
-set shiftwidth=2
-set shiftround
+" remapping escape
+inoremap kj <esc>
+inoremap <esc> <nop>
 
-" folding
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
+" move line down or up
+nnoremap <C-j> :m .+1<CR>
+nnoremap <C-k> :m .-2<CR>
 
-" enable mouse support
-if has('mouse')
-  set mouse=a
-endif
+" toggle netrw
+nnoremap <Leader>ew :Lexplore<CR>
+nnoremap <leader>ee :Lexplore %:p:h<CR>
+tnoremap <Leader>ew <C-w>N :Lexplore<CR> i<CR>
+tnoremap <Leader>ee <C-w>N :Lexplore %:p:h<CR> i<CR>
 
-" window splitting
-set splitright
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" edit and source vimrc
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" better page-up and page-down
-nnoremap <C-k> <PageUp>
-nnoremap <C-j> <PageDown>
+" surround word under cursor with quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
-" auto print statement
-autocmd FileType cpp nmap <buffer> <C-c> i << ::std::endl;<esc>5bhi::std::cout <<<space>
-autocmd FileType javascript nmap <buffer> <C-c> i);<esc>hiconsole.log(
+" toggle spell checker
+nnoremap <leader>sc :set spell!<CR>
 
-" pathogen runtime path manager
-execute pathogen#infect()
+" set path to include all files at or below the current directory and above until the src directory
+nnoremap <leader>sp :set path=**;src<CR>
 
-" tagbar
-nnoremap <C-l> :TagbarToggle<CR>
+" set colorscheme
+nnoremap <leader>csl :colorscheme onehalflight<CR>
+nnoremap <leader>csd :colorscheme onehalfdark<CR>
 
-" fugitive (git wrapper)
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-nnoremap <Leader>ga :Git add %:p<CR><CR>
-nnoremap <Leader>gst :Gstatus<CR>
-nnoremap <Leader>gsq :Git rebase -i<CR>
-nnoremap <Leader>gc :Gcommit -v -q<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>ge :Gedit<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR><CR>
-nnoremap <Leader>gl :Git log<CR>
-nnoremap <Leader>gm :Gmerge<Space>
-nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>gbr :Git branch<Space>
-nnoremap <Leader>gbl :Gblame<CR>
-nnoremap <Leader>gps :Gpush<CR>
-nnoremap <Leader>gpl :Gpull<CR>
 
-" nerdtree (file explorer)
-nnoremap <silent> <C-t> :NERDTreeToggle<CR>
+" vimscript
 
-" ctrlp (fuzzy finder)
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" toggle relative number
+function! ToggleRelativeNumber()
+  set norelativenumber!
+endfunction
+nnoremap <leader>rn :call ToggleRelativeNumber()<CR>
 
-" Source the vimrc file after saving it
-augroup vimrc
-  if has("autocmd")
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd BufWritePost .vimrc source $MYVIMRC
-  endif
-augroup end
+" mappings from within netrw, only apply to the netrw buffer
+function! NetrwMapping()
+  nmap <buffer> H u
+  nmap <buffer> h -^
+  nmap <buffer> l <CR>
 
-" make vim search for tag files from the current directory up to the home
-" folder. This makes searching for relevant code in large codebases easier
-set iskeyword+=-
-set iskeyword+=/
-set tags=./tags,tags;$HOME " Walk up from current directory to the $HOME looking for tag files
+  nmap <buffer> . gh
+  nmap <buffer> P <C-w>z
 
-" tag stuff
-map <C-\> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
+  nmap <buffer> L <CR>:Lexplore<CR>
+  nmap <buffer> <Leader>ee :Lexplore<CR>
 
-" map the k+j keystrokes to escape
-imap kj <Esc>
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-set background=dark
-
-" jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" colors
-hi TabLineFill ctermfg=255 ctermbg=250
-hi TabLine ctermfg=White ctermbg=235
-hi TabLineSel ctermfg=Black ctermbg=Yellow
-
-" vim airlines
-let g:airline_section_y=''
-let g:airline_section_z=''
-let g:airline_right_sep=''
-let g:airline#extensions#whitespace#enabled=0
-let g:airline#extensions#default#section_truncate_width = {
-      \ 'x': 60,
-      \ 'y': 88,
-      \ 'z': 45,
-      \ 'warning': 80,
-      \ 'error': 80,
-      \ }
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  nmap <buffer> <TAB> mf
+	nmap <buffer> <Leader><TAB> mu
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" set mappings when netrw is opened
+augroup group_netrw
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
+augroup group_filetype
+  autocmd!
+  autocmd filetype python nnoremap <buffer> <localleader>c I#<esc>
+  autocmd filetype cpp nnoremap <buffer> <localleader>c I//<esc>
+  autocmd filetype cpp nnoremap <buffer> <localleader>so istd::cout << << std::endl;<esc>BBhi
+  autocmd filetype cpp nnoremap <buffer> <localleader>se istd::cerr << << std::endl;<esc>BBhi
+augroup END
