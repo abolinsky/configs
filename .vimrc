@@ -105,6 +105,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+autocmd BufWritePre *.cpp,*.h,*.hpp,*.cc,*.c ClangFormat
+
+command! -nargs=0 ClangFormat execute ':%!clang-format'
+
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
